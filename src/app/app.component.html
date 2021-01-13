@@ -1,0 +1,80 @@
+<mat-tab-group>
+	<mat-tab label="Onglet 1">
+		<div class="container">
+
+			<button (click)="openSnack()" mat-raised-button color="primary">Snackbar</button>
+
+			<br>
+
+			<button matTooltip="je suis de l'aide" matTooltipPosition="right" mat-raised-button color="accent" (click)="openDialog()">Open dialog</button>
+
+			<br>
+
+			<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+			<mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+			<br>
+			<mat-icon class="icon">flight_land</mat-icon>
+			<br>
+			<mat-chip-list>
+				<mat-chip (removed)="removeChip($event, chip)" [removable]="true" *ngFor="let chip of chips">
+					{{chip}}
+					<mat-icon matChipRemove>cancel</mat-icon>
+				</mat-chip>
+			</mat-chip-list>
+			<br>
+			<br>
+
+			<mat-button-toggle-group (change)="toggle($event)">
+				<mat-button-toggle value="1">Mon bouton 1</mat-button-toggle>
+				<mat-button-toggle value="2">Mon bouton 2</mat-button-toggle>
+				<mat-button-toggle value="3">Mon bouton 3</mat-button-toggle>
+			</mat-button-toggle-group>
+
+			<br>
+			<br>
+
+			<mat-accordion>
+				<mat-expansion-panel>
+					<mat-expansion-panel-header>
+						<mat-panel-title>
+							Le titre du panneau
+						</mat-panel-title>
+						<mat-panel-description>
+							Une description du contenu
+						</mat-panel-description>
+					</mat-expansion-panel-header>
+					<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea, obcaecati.</p>
+				</mat-expansion-panel>
+				<mat-expansion-panel>
+					<mat-expansion-panel-header>
+						<mat-panel-title>
+							Le titre du panneau
+						</mat-panel-title>
+						<mat-panel-description>
+							Une description du contenu
+						</mat-panel-description>
+					</mat-expansion-panel-header>
+					<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea, obcaecati.</p>
+				</mat-expansion-panel>
+			</mat-accordion>
+		</div>
+	</mat-tab>
+	<mat-tab label="Onglet 2">
+		<div class="container">
+			<mat-card>
+				<mat-card-content>
+					<mat-horizontal-stepper>
+						<mat-step label="Etape 1">
+							<p> Etape 1</p>
+							<button mat-button matStepperNext color="primary">Suivant</button>
+						</mat-step>
+						<mat-step label="Etape 2">
+							<p> Etape 1</p>
+							<button mat-button matStepperPrevious color="primary">Retour</button>
+						</mat-step>
+					</mat-horizontal-stepper>
+				</mat-card-content>
+			</mat-card>
+		</div>
+	</mat-tab>
+</mat-tab-group>
