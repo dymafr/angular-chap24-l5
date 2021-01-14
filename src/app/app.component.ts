@@ -1,6 +1,9 @@
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 import { DialogComponent } from "./shared/components/dialog.component";
 
 @Component({
@@ -9,36 +12,19 @@ import { DialogComponent } from "./shared/components/dialog.component";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit {
-  public chips: string[] = ["chip 1", "chip 2", "chip 3"];
 
-  constructor(private dialog: MatDialog, private snack: MatSnackBar) {}
+  constructor(private http: HttpClient) {}
 
-  toggle(event) {
-    console.log(event);
-  }
-
-  removeChip(event, chip: string) {
-    this.chips = this.chips.filter(el => el !== chip);
-  }
-
-  openDialog() {
-    const ref = this.dialog.open(DialogComponent, {
-      width: "800px",
-      height: "400px",
-      data: "Des données"
-    });
-
-    ref.afterClosed().subscribe(data => console.log(data));
-  }
-
-  openSnack() {
-    const ref = this.snack.open("Sauvegarde effectuée", "annuler", {
-      duration: 2000
-    });
-
-    ref.afterDismissed().subscribe(() => console.log("done"));
-
-    ref.onAction().subscribe(() => console.log("action cliqué"));
+  fetchUsers(): Observable<User[]> {
+    return this.http.get('https://randomuser.me/api/?results=100').pipe(map((res: {results: any[], info: any})) => {
+      const users = res.results.map(user => {
+        gender: user.gender,
+        cell: user.cell,
+        email: user.email, 
+        nat: user.nat,
+        phone: user.phone
+      })
+    })
   }
 
   ngOnInit() {}
