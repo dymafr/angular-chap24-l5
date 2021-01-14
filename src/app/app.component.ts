@@ -9,6 +9,7 @@ import { UserService } from "./shared/services/user.service";
 })
 export class AppComponent implements OnInit {
   public users: User[];
+  public displayedColumns = ["gender", "cell", "email", "nat", "phone"];
 
   constructor(private userService: UserService) {}
 
