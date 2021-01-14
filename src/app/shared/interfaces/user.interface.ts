@@ -1,5 +1,5 @@
 export interface User {
-  gender: string;
+  gender: "male" | "female";
   cell: string;
   email: string;
   nat: string;
