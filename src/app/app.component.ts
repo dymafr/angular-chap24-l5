@@ -9,7 +9,6 @@ import { UserService } from "./shared/services/user.service";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit {
-  public users: User[];
   public dataSource: MatTableDataSource<User> = new MatTableDataSource();
   public displayedColumns = ["gender", "cell", "email", "nat", "phone"];
 
@@ -17,7 +16,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.userService.fetchUsers().subscribe((users: User[]) => {
-      this.users = users;
       this.dataSource.data = users;
     });
   }
